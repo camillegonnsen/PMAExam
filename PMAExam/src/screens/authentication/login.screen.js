@@ -25,7 +25,7 @@ export const LoginScreen = ({ navigation }) => {
       <Text style={{fontSize: 32, color: "#688A6F",fontWeight: "700", marginTop: 50, marginBottom: 50}}>Log in</Text>
 
       <View>
-      <Text>E- mail</Text>
+      <Text style={{marginBottom: 10}}>E-mail</Text>
       <TextInput
         style={styles.input}
         label="E-mail"
@@ -37,7 +37,7 @@ export const LoginScreen = ({ navigation }) => {
         onChangeText={(user) => setEmail(user)}
       />
 
-       <Text>Password</Text>
+       <Text style={{marginBottom: 10}}>Password</Text>
        <TextInput
         style={styles.input}
         label="Password"
@@ -59,7 +59,6 @@ export const LoginScreen = ({ navigation }) => {
               Not a user?{" "}
               <Text style={styles.sign}>Sign Up</Text>
             </Text>
-
       </TouchableOpacity>
       </View>
       </View>

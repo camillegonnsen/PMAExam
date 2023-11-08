@@ -5,6 +5,7 @@ import {
   Image,
   TextInput,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 import { useState, useContext } from "react";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
@@ -21,7 +22,15 @@ export const RegisterScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+
+      <Image
+          source={require('../../../assets/Logo.png')}
+          style={{width: 100, height: 100, marginTop: 117}}
+      />
+      <Text style={{fontSize: 32, color: "#688A6F",fontWeight: "700", marginTop: 50, marginBottom: 50}}>Sign Up</Text>
+      
       <View>
+      <Text style={{marginBottom: 10}}>E-mail</Text>
       <TextInput
         style={styles.input}
         label="E-mail"
@@ -32,6 +41,8 @@ export const RegisterScreen = ({ navigation }) => {
         autoCapitalize="none"
         onChangeText={(user) => setEmail(user)}
       />
+
+      <Text style={{marginBottom: 10}}>Password</Text>
        <TextInput
         style={styles.input}
         label="Password"
@@ -42,6 +53,8 @@ export const RegisterScreen = ({ navigation }) => {
         autoCapitalize="none"
         onChangeText={(pass) => setPassword(pass)}
       />
+
+      <Text style={{marginBottom: 10}}>Repeat password</Text>
       <TextInput
         style={styles.input}
         label="Repeat Password"
@@ -55,9 +68,15 @@ export const RegisterScreen = ({ navigation }) => {
       <Pressable style={styles.nav_button} onPress={() => onRegister(email, password, repeatedPassword)}>
         <Text style={{ color: "white", fontWeight: "800" }}>Sign Up</Text>
       </Pressable>
-      <Pressable style={styles.nav_button} onPress={() => navigation.goBack()}>
-        <Text style={{ color: "white", fontWeight: "800" }}>Back</Text>
-      </Pressable>
+
+      <View style={styles.signUpContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.text}>
+              Already a user?{" "}
+              <Text style={styles.sign}>Log in</Text>
+            </Text>
+      </TouchableOpacity>
+      </View>
       </View>
     </View>
   );
@@ -66,9 +85,8 @@ export const RegisterScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#ebe2d9",
     alignItems: "center",
-    justifyContent: "center",
   },
   image: {
     width: 300,
@@ -76,23 +94,35 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   nav_button: {
-    backgroundColor: "#D291FF",
-    width: 250,
+    backgroundColor: "#688A6F",
+    width: 100,
+    marginLeft: 70,
+    height: 37,
     padding: 10,
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: "center",
     color: "white",
     marginTop: 20
   },
   input: {
-    borderColor: "#D291FF",
-    borderWidth: 2,
-    width: 250,
+    backgroundColor: "white",
+    width: 256,
+    height: 51,
     padding: 10,
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: "center",
-    color: "black",
-    textAlign: "center",
-    marginTop: 20
-  }
+    marginBottom: 20
+  },
+
+  sign:{
+    color: "#005BFF",
+    textDecorationLine: "underline",
+  },
+
+  
+  signUpContainer:{
+    alignItems: "center",
+    marginTop: 10
+  },
+
 });
