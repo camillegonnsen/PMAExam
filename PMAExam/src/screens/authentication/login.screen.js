@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   Pressable,
+  Image,
 } from "react-native";
 import { useState, useContext } from "react";
 import { TouchableOpacity } from "react-native";
@@ -17,17 +18,26 @@ export const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Image
+          source={require('../../../assets/Logo.png')}
+          style={{width: 100, height: 100, marginTop: 117}}
+        />
+      <Text style={{fontSize: 32, color: "#688A6F",fontWeight: "700", marginTop: 50, marginBottom: 50}}>Log in</Text>
+
       <View>
+      <Text>E- mail</Text>
       <TextInput
         style={styles.input}
         label="E-mail"
         value={email}
-        placeholder="type your email here"
+        placeholder="Write your email here"
         textContentType="emailAddress"
         keyboardType="email-address"
         autoCapitalize="none"
         onChangeText={(user) => setEmail(user)}
       />
+
+       <Text>Password</Text>
        <TextInput
         style={styles.input}
         label="Password"
@@ -46,7 +56,7 @@ export const LoginScreen = ({ navigation }) => {
       <View style={styles.signUpContainer}>
       <TouchableOpacity onPress={() => navigation.navigate("Register")}>
             <Text style={styles.text}>
-              Don't have an account?{" "}
+              Not a user?{" "}
               <Text style={styles.sign}>Sign Up</Text>
             </Text>
 
@@ -60,34 +70,29 @@ export const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#ebe2d9",
     alignItems: "center",
-    justifyContent: "center",
   },
-  image: {
-    width: 300,
-    height: 300,
-    marginBottom: 20,
-  },
+
   nav_button: {
-    backgroundColor: "#D291FF",
-    width: 250,
+    backgroundColor: "#688A6F",
+    width: 100,
+    marginLeft: 70,
+    height: 37,
     padding: 10,
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: "center",
     color: "white",
     marginTop: 20
   },
   input: {
-    borderColor: "#D291FF",
-    borderWidth: 2,
-    width: 250,
+    backgroundColor: "white",
+    width: 256,
+    height: 51,
     padding: 10,
-    borderRadius: 20,
+    borderRadius: 10,
     alignItems: "center",
-    color: "black",
-    textAlign: "center",
-    marginTop: 20
+    marginBottom: 20
   },
 
   signUpContainer:{
@@ -96,7 +101,7 @@ const styles = StyleSheet.create({
   },
 
   sign:{
-    color: "blue",
+    color: "#005BFF",
     textDecorationLine: "underline"
   }
 });
