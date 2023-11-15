@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 import { Screen1 } from "../../screens/Screen1";
-import { Screen2 } from "../../screens/Screen2";
+import { Map } from "../../screens/map/Map";
 import { Screen3 } from "../../screens/Screen3";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
@@ -69,7 +69,7 @@ export const AppNavigator = () => (
   
   <Tab.Navigator screenOptions={createScreenOptions}>
     <Tab.Screen name="Overview" component={Screen1}/>
-    <Tab.Screen name="Map" component={Screen2} />
+    <Tab.Screen name="Map" component={Map} />
     <Tab.Screen name={"Add"} component={Add} Label={"Add"}options={{
           tabBarLabel: () => null, // Hide the label in the bottom nav bar
           headerTitle: "Add visited attraction", // Set the label for the header
