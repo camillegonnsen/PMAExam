@@ -35,11 +35,31 @@ const createScreenOptions = ({ route }) => {
     tabBarIcon: tabBarIcon(iconName),
     tabBarActiveTintColor: "#688A6F",
     tabBarInactiveTintColor: "black",
+    tabBarStyle: {
+      backgroundColor: '#E9E9E9', // Set the background color of the bottom navigation bar
+    },
+    tabBarLabelStyle: {
+      fontSize: 10, // Set the font size for the label
+      fontWeight: route.state?.index === route.key ? 'bold' : 'normal', // Set font weight to bold when active
+    },
+    tabBarLabel: ({ focused, color }) => (
+      <Text style={{ fontSize: 12, fontWeight: focused ? 'bold' : 'normal', color }}>
+        {route.name}
+      </Text>
+    ),
     headerRight: () => (
       <TouchableOpacity onPress={onLogout} style={{ marginRight: 10 }}>
         <Text style={{ color: "#2182BD" }}>Logout</Text>
       </TouchableOpacity>
     ),
+    headerStyle: {
+      backgroundColor: '#ebe2d9', // Set the background color of the header
+    
+    },
+    headerTintColor: '#688A6F', // Set the text color of the header buttons
+    headerTitleStyle: {
+      fontSize: 25, // Set the font size of the header title
+    },
   };
 };
 
