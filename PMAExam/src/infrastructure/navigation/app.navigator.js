@@ -9,7 +9,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import { Screen1 } from "../../screens/Screen1";
 import { Screen2 } from "../../screens/Screen2";
 import { Screen3 } from "../../screens/Screen3";
-import { Screen4 } from "../../screens/Screen4";
+import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
 
 const Tab = createBottomTabNavigator();
@@ -88,6 +88,6 @@ export const AppNavigator = () => (
           )
         }}></Tab.Screen>
     <Tab.Screen name="Leaderboard" component={Screen3}/>
-    <Tab.Screen name="Profile" component={Screen4} />
+    <Tab.Screen name="Profile" component={ProfileScreen} />
   </Tab.Navigator>
 );

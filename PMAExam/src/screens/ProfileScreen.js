@@ -1,6 +1,8 @@
 import {React} from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Pressable } from "react-native";
 import { Text } from "react-native-paper";
+import Divider from '../../src/components/divider.component';
+
 export const ProfileScreen = () => {
   return (
     <View style={styles.container}>
@@ -30,10 +32,11 @@ export const ProfileScreen = () => {
         </View>
       </View>
       {/* Thin black line separating text box from the bottom element */}
-      <View style={styles.separator}></View>
+      <Divider thickness={3}/>
       {/* Bottom element with "visited attractions" text, images, and button */}
+      <Text style={styles.visitedAttractionsText}>Visited Attractions</Text>
       <View style={styles.bottomElement}>
-        <Text style={styles.visitedAttractionsText}>Visited Attractions</Text>
+        
         <Text style={styles.smallText}>The Little Mermaid</Text>
         {/* Two pictures side by side */}
         <View style={styles.pictureContainer}>
@@ -42,12 +45,9 @@ export const ProfileScreen = () => {
           <Image source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1sFaSam39xpsT4CaiEQwLCIw0MSjFH5xPWSYPCzE36ypE_tJB" }} style={styles.smallImage} />
         </View>
         {/* Button with modified color */}
-        <View style={styles.buttonContainer}>
+        <Pressable style={styles.detailButton}>
           <Text style={styles.buttonText}>See Details</Text>
-          {/* Placeholder for navigation bar */}
-          {/* Replace with your actual navigation bar component */}
-          <View style={styles.navigationBarPlaceholder}></View>
-        </View>
+        </Pressable>
       </View>
     </View>
   );
@@ -56,13 +56,11 @@ export const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F1ED", // Updated background color
+    backgroundColor: "#ebe2d9", // Updated background color
   },
   header: {
     flexDirection: "row",
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "black",
   },
   profilePicture: {
     width: 50,
@@ -97,14 +95,20 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: "black",
+    backgroundColor: "#ebe2d9",
   },
   bottomElement: {
+    flex: 1, 
+    alignItems: "center", 
     padding: 10,
   },
+
   visitedAttractionsText: {
     fontWeight: "bold",
     marginBottom: 10,
+    marginTop: 30,
+    marginLeft: 25,
+    fontSize: 17,
     color: "#000000", // Updated color
   },
   smallText: {
@@ -116,21 +120,25 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   smallImage: {
-    width: 50,
-    height: 50,
+    width: 162,
+    height: 217,
     marginRight: 5,
   },
-  buttonContainer: {
-    flexDirection: "row",
+  detailButton: {
+    width: 326,
+    height: 54,
+    justifyContent: "center",
     alignItems: "center",
-    borderColor: "#688A6F", // Updated color
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginTop: 10,
+    borderRadius: 10,
+    borderWidth: 4,
+    borderColor: "#688A6F"
+
   },
   buttonText: {
+    textAlign: "center",
     marginRight: 10,
+    fontSize: 17,
+    fontWeight: 700,
     color: "#688A6F", // Updated color
   },
   navigationBarPlaceholder: {
