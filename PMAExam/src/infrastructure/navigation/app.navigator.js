@@ -8,7 +8,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 
 import { Screen1 } from "../../screens/Screen1";
 import { Map } from "../../screens/map/Map";
-import { Screen3 } from "../../screens/Screen3";
+import { Leaderboard } from "../../screens/Leaderboard";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
 
@@ -87,7 +87,7 @@ export const AppNavigator = () => (
               </View>
           )
         }}></Tab.Screen>
-    <Tab.Screen name="Leaderboard" component={Screen3}/>
+    <Tab.Screen name="Leaderboard" component={Leaderboard}/>
     <Tab.Screen name="Profile" component={ProfileScreen} />
   </Tab.Navigator>
 );

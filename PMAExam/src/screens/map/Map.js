@@ -35,7 +35,9 @@ export const Map = () => {
   const [mapType, setMapType] = useState("standard");
   const [showsUserLocation, setShowsUserLocation] = useState(false);
   const [visible, setVisible] = React.useState(false);
-  const greenMark = './../../../assets/Basic_green_dot.png'
+  const greenPin = './../../../assets/Green_Pin.png'
+  const yellowPin = './../../../assets/Yellow_Pin.png'
+  const redPin = './../../../assets/Red_Pin.png'
 
 
   const pointsOfInterest = [
@@ -43,74 +45,74 @@ export const Map = () => {
     new pointOfInterest(
       { latitude: 55.69269516489231, longitude: 12.594401456560474},
       "Kastellet",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.65346745093697, longitude: 12.577147786658136 },
       "Amager Fælled",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.68932350079579, longitude: 12.567072701450753 },
       "Søerne",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.67479738955379, longitude: 12.581137072338239 },
       "Bibliotekshaven",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.665404205576166, longitude: 12.573790195349881 },
       "Havnestads Havnepark",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.702300779373026, longitude: 12.567884842266832 },
       "Fælledparken",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.69295792626929, longitude: 12.59920029526256 },
       "The Little Mermaid",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.685138307213016, longitude: 12.589543670252091 },
       "Church of Our Lady",
-      require(greenMark)
+      require(greenPin)
     ),
     new pointOfInterest(
       { latitude: 55.67937896150321, longitude: 12.572147968274647 },
       "The Marble Church",
-      require(greenMark)
+      require(greenPin)
     ),
-/*
+
     //Yellow markers
     new pointOfInterest(
       { latitude: 55.67253027778619, longitude: 12.521315181767763 },
       "Copenhagen Zoo",
-      require("../../assets/yellowMarker.png")
+      require(yellowPin)
     ),
 
     new pointOfInterest(
       { latitude: 55.67457812197257, longitude: 12.574676383616369},
       "National Museum of Denmark",
-      require("../../assets/yellowMarker.png")
+      require(yellowPin)
     ),
 
     //Red markers
     new pointOfInterest(
       { latitude: 55.6738352545145, longitude: 12.568286556922459 },
       "Tivoli",
-      require("../../assets/redMarker.png")
+      require(redPin)
     ),
 
     new pointOfInterest(
       { latitude: 55.638610148608976, longitude: 12.655649397107624 },
       "National Aquarium Denmark",
-      require("../../assets/redMarker.png")
-    ),*/
+      require(redPin)
+    ),
   ];
 
   useEffect(() => {
@@ -142,7 +144,7 @@ export const Map = () => {
             title={p.info}
           
           >
-            <Image source={p.image} style={{ width: 40, height: 40 }} />
+            <Image source={p.image} style={{ width: 30, height: 40, resizeMode: 'contain' }} />
           </Marker>
         ))}
       </Maps>
