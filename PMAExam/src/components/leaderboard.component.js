@@ -7,7 +7,7 @@ const LeaderboardAtrraction = ({ id, name, score, seeDetails }) => (
     <View style={styles.row}>
         <View>
             <Text style={styles.name}>{id}. {name}</Text>
-            <Pressable onPress={() => seeDetails(id)}><Text style={styles.details}>See details</Text></Pressable>
+            <Pressable onPress={() => seeDetails}><Text style={styles.details}>See details</Text></Pressable>
         </View>
         <Text style={styles.score}>{score}%</Text>
     </View>
