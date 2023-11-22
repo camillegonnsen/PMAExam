@@ -147,3 +147,5 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray", // Placeholder background color
   },
 });
+
+//hej
