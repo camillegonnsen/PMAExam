@@ -1,4 +1,4 @@
-/* Inspirated from: https://github.com/fabricionarcizo/pma2023 */
+/* Inspired by: https://github.com/fabricionarcizo/pma2023 */
 
 import React, { createContext, useEffect, useState } from 'react';
 import { CameraType } from "expo-camera";
