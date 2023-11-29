@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { Feather, EvilIcons, Ionicons   } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
@@ -11,8 +12,10 @@ import { Map } from "../../screens/map/Map";
 import { Screen3 } from "../../screens/Screen3";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
+import { CameraView } from "../../screens/camera_screens/CameraView";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const TAB_ICON = {
   Overview: "eye-outline",
@@ -70,7 +73,7 @@ export const AppNavigator = () => (
   <Tab.Navigator screenOptions={createScreenOptions}>
     <Tab.Screen name="Overview" component={Screen1}/>
     <Tab.Screen name="Map" component={Map} />
-    <Tab.Screen name={"Add"} component={Add} Label={"Add"}options={{
+    <Tab.Screen name={"Add"} component={ButtonNavigator} Label={"Add"}options={{
           tabBarLabel: () => null, // Hide the label in the bottom nav bar
           headerTitle: "Add visited attraction", // Set the label for the header
           tabBarIcon: ({ focused }) => (
@@ -90,4 +93,11 @@ export const AppNavigator = () => (
     <Tab.Screen name="Leaderboard" component={Screen3}/>
     <Tab.Screen name="Profile" component={ProfileScreen} />
   </Tab.Navigator>
+);
+
+export const ButtonNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Add" component={Add} />
+    <Stack.Screen name="camera" component={CameraView} />
+  </Stack.Navigator>
 );

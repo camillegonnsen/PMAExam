@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { Camera } from "expo-camera"
 import { Ionicons } from "@expo/vector-icons";
 
-export const CameraView = styled(Camera)`
+export const CameraViewS = styled(Camera)`
     flex: 1;
     align-items: center;
 `;

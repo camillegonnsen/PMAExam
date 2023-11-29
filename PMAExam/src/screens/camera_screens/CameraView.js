@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { ButtonsView, CameraView, SmallButton, BigButton, ButtonIcon, SnackbarText } from "./camera.style";
+import { ButtonsView, CameraViewS, SmallButton, BigButton, ButtonIcon, SnackbarText } from "./camera.style.js";
 import { Snackbar } from "react-native-paper"; // pop-up
-import { CameraContext } from "../../services/camera/camera.context.js"
+import { CameraContext } from "../../services/camera/camera.context.js";
 import { useIsFocused } from "@react-navigation/native";
 
 
@@ -26,7 +26,7 @@ export const CameraView = ({ navigation }) => {
     return (
         <>
             {isFocused && (
-                <CameraView ref={(ref) => setCamera(ref)}
+                <CameraViewS ref={(ref) => setCamera(ref)}
                     type={cameraSwitch}
                     useCcamera2api={isAndroid}
                     ratio="2:1"
@@ -52,7 +52,7 @@ export const CameraView = ({ navigation }) => {
                     <SnackbarText>Image sucessfully saved!</SnackbarText>
                 </Snackbar>
 
-                </CameraView>
+                </CameraViewS>
             )}
         </>
     );
