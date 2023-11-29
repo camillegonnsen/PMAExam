@@ -1,54 +1,81 @@
-import {React} from "react";
-import { StyleSheet, View, Image, Pressable } from "react-native";
+import {React, useState} from "react";
+import { StyleSheet, View, Image, Pressable, Modal, FlatList } from "react-native";
 import { Text } from "react-native-paper";
-import Divider from '../../src/components/divider.component';
+import Divider from '../components/divider.component';
+import VisitedAtrranction from '../components/visitedAttraction.component';
+import { BlurView } from 'expo-blur';
+import AttractionDetail from "../components/attractionDetail.component";
 
 export const ProfileScreen = () => {
+
+  const [attractionList, setattractionList] = useState([
+    {id: "1", name: 'The Little Mermaid', score: 93, address: "Langelinie, 2100 København Ø", image1: "https://usercontent.one/wp/www.rundtidanmark.dk/wp-content/uploads/2021/06/KMO_9949.jpg", image2: "https://a.cdn-hotels.com/gdcs/production103/d1630/806328d2-1333-4996-a51b-39d34be73bee.jpg"},
+    {id: "2", name: 'Amager Fællede', score: 98, address: "Artillerivej 73B, 2300 København", image1: "https://naturibyen.com/wp-content/uploads/2017/06/Koebenhavn_S_20120808_TH_0049_web.jpg", image2:"https://media-cdn.tripadvisor.com/media/photo-s/05/bf/34/72/amager-faelled.jpg"},
+  ]);
+
+  const [visible, setVisible] = useState(false);
+  const [selectedPointOfInterest, setSelectedPointOfInterest] = useState(null);
+
+  const seeDetails = (item) => {
+    setSelectedPointOfInterest(item);
+    setVisible(true);
+  };
+
+  const closeModal = () => {
+    setSelectedPointOfInterest(null);
+    setVisible(false);
+  };
+
   return (
     <View style={styles.container}>
+      {selectedPointOfInterest && (
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={true}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            closeModal();
+          }}>
+          <BlurView intensity={4} style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <AttractionDetail
+                name={selectedPointOfInterest.name}
+                score={selectedPointOfInterest.score}
+                address={selectedPointOfInterest.address}
+                image1={selectedPointOfInterest.image1}
+                image2={selectedPointOfInterest.image2}
+                goBack={closeModal}
+              />
+            </View>
+          </BlurView>
+        </Modal>
+      )}
+
       <View style={styles.header}>
-        {/* Rounded profile picture in the top right corner */}
         <Image
           source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/HCA_by_Thora_Hallager_1869.jpg/197px-HCA_by_Thora_Hallager_1869.jpg" }} // Replace with the actual URI
           style={styles.profilePicture}
         />
-        {/* Larger bold text next to the profile picture */}
-        <Text style={styles.profileText}>Profile</Text>
-        {/* Outlined header with thin black line */}
         <View style={styles.outlinedHeader}>
-          {/* Profile description text box */}
           <Text style={styles.descriptionText}>
-          Hello My name is Hans Christian, I like to note down every time i rub one out!
-          Also I have a thing for sea-creatures.
-          </Text>
-          {/* Eco-Level text box with image */}
-          <View style={styles.ecoLevelContainer}>
-            <Text style={styles.ecoLevelText}>Eco-Level: Eco Overlord</Text>
-            <Image
-              source={{ uri: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTme2WQq0kAB3CTMvzmjdSlyNcJkCkIRktnut8P0MgdrOPN4tXsyour_image_uri" }} // Replace with the actual URI
-              style={styles.ecoLevelImage}
-            />
-          </View>
+          Hello! My name is Hans Christian, I like to note down every time i rub one out!Also I have a thing for sea-creatures.
+          </Text> 
+          <Text style={styles.ecoLevelText}>Eco-Level: Eco Overlord</Text>
         </View>
       </View>
-      {/* Thin black line separating text box from the bottom element */}
+  
       <Divider thickness={3}/>
-      {/* Bottom element with "visited attractions" text, images, and button */}
+  
       <Text style={styles.visitedAttractionsText}>Visited Attractions</Text>
-      <View style={styles.bottomElement}>
-        
-        <Text style={styles.smallText}>The Little Mermaid</Text>
-        {/* Two pictures side by side */}
-        <View style={styles.pictureContainer}>
-          {/* Replace the source with actual URIs */}
-          <Image source={{ uri: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR54cCcSoV80Kuw-k4Z1brP212Kq16LWuwGPbL9oLWnvO2G_Hcj" }} style={styles.smallImage} />
-          <Image source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1sFaSam39xpsT4CaiEQwLCIw0MSjFH5xPWSYPCzE36ypE_tJB" }} style={styles.smallImage} />
-        </View>
-        {/* Button with modified color */}
-        <Pressable style={styles.detailButton}>
-          <Text style={styles.buttonText}>See Details</Text>
-        </Pressable>
-      </View>
+      <FlatList
+            data={attractionList}
+            renderItem = {({item}) => (
+              <VisitedAtrranction name={item.name} image1={item.image1} image2={item.image2} seeDetails={() => seeDetails(item)}/>
+            )}
+            keyExtractor={item => item.id}
+            contentContainerStyle={styles.flatListContent}
+        />
     </View>
   );
 };
@@ -56,96 +83,60 @@ export const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ebe2d9", // Updated background color
+    backgroundColor: "#ebe2d9",
   },
+  
   header: {
     flexDirection: "row",
     padding: 10,
   },
+
   profilePicture: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    marginRight: 10,
+    margin: 10,
   },
-  profileText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#688A6F", // Updated color
-    marginRight: 10,
-  },
+  
   outlinedHeader: {
     flex: 1,
   },
+
   descriptionText: {
     marginBottom: 10,
-    color: "#000000", // Updated color
   },
-  ecoLevelContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
+
   ecoLevelText: {
     marginRight: 5,
-    color: "#000000", // Updated color
   },
-  ecoLevelImage: {
-    width: 20,
-    height: 20,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: "#ebe2d9",
-  },
-  bottomElement: {
-    flex: 1, 
-    alignItems: "center", 
-    padding: 10,
-  },
-
+  
   visitedAttractionsText: {
-    fontWeight: "bold",
+    textAlign: 'center',
     marginBottom: 10,
     marginTop: 30,
-    marginLeft: 25,
     fontSize: 17,
-    color: "#000000", // Updated color
+    color: "#000000", 
   },
-  smallText: {
-    marginBottom: 10,
-    color: "#000000", // Updated color
-  },
-  pictureContainer: {
-    flexDirection: "row",
-    marginBottom: 10,
-  },
-  smallImage: {
-    width: 162,
-    height: 217,
-    marginRight: 5,
-  },
-  detailButton: {
-    width: 326,
-    height: 54,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    borderWidth: 4,
-    borderColor: "#688A6F"
 
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  buttonText: {
-    textAlign: "center",
-    marginRight: 10,
-    fontSize: 17,
-    fontWeight: 700,
-    color: "#688A6F", // Updated color
-  },
-  navigationBarPlaceholder: {
-    width: 100, // Placeholder width
-    height: 20, // Placeholder height
-    backgroundColor: "lightgray", // Placeholder background color
+
+  modalView: {
+    margin: 20,
+    backgroundColor: '#F5F1ED',
+    borderRadius: 20,
+    padding: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
-
-//hej
