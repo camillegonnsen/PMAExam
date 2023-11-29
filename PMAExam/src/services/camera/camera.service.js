@@ -1,7 +1,7 @@
 /* camera.service.js provides methods for requesting permissions
    to access the users camera. 
    
-   Inspirated from: https://github.com/fabricionarcizo/pma2023 */
+   Inspired by: https://github.com/fabricionarcizo/pma2023 */
 
 
 import { Camera } from "expo-camera"; 
