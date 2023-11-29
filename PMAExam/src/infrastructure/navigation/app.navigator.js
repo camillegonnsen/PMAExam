@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-import { Screen1 } from "../../screens/Screen1";
+import { Overview } from "../../screens/OverviewScreen";
 import { Map } from "../../screens/map/Map";
 import { Leaderboard } from "../../screens/Leaderboard";
 import { ProfileScreen } from "../../screens/ProfileScreen";
@@ -68,7 +68,7 @@ const createScreenOptions = ({ route }) => {
 export const AppNavigator = () => (
   
   <Tab.Navigator screenOptions={createScreenOptions}>
-    <Tab.Screen name="Overview" component={Screen1}/>
+    <Tab.Screen name="Overview" component={Overview}/>
     <Tab.Screen name="Map" component={Map} />
     <Tab.Screen name={"Add"} component={Add} Label={"Add"}options={{
           tabBarLabel: () => null, // Hide the label in the bottom nav bar

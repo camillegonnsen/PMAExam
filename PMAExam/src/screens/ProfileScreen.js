@@ -59,7 +59,7 @@ export const ProfileScreen = () => {
         />
         <View style={styles.outlinedHeader}>
           <Text style={styles.descriptionText}>
-          Hello! My name is Hans Christian, I like to note down every time i rub one out!Also I have a thing for sea-creatures.
+          Hello! My name is Hans Christian, I like to note down every time i rub one out! Also I have a thing for sea-creatures.
           </Text> 
           <Text style={styles.ecoLevelText}>Eco-Level: Eco Overlord</Text>
         </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ebe2d9",
   },
-  
+
   header: {
     flexDirection: "row",
     padding: 10,
