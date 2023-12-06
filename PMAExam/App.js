@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastructure/navigation";
+import { CameraContextProvider } from "./src/services/Camera/camera.context";
 
 export default function App() {
 
@@ -14,7 +15,9 @@ export default function App() {
   return (
     <>
         <AuthenticationContextProvider>
-          <Navigation />
+          <CameraContextProvider>
+            <Navigation />
+          </CameraContextProvider>
         </AuthenticationContextProvider>
       <StatusBar style="auto" />
     </>

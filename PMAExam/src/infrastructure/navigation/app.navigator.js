@@ -11,6 +11,7 @@ import { Map } from "../../screens/map/Map";
 import { Leaderboard } from "../../screens/Leaderboard";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
+import {CameraScreen} from "../../screens/camera/CameraScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -70,9 +71,12 @@ export const AppNavigator = () => (
   <Tab.Navigator screenOptions={createScreenOptions}>
     <Tab.Screen name="Overview" component={Overview}/>
     <Tab.Screen name="Map" component={Map} />
-    <Tab.Screen name={"Add"} component={Add} Label={"Add"}options={{
-          tabBarLabel: () => null, // Hide the label in the bottom nav bar
-          headerTitle: "Add visited attraction", // Set the label for the header
+    <Tab.Screen name={"Add"} component={CameraScreen} options={{
+          tabBarLabel: () => null,
+          headerShown: false, // Hide the header
+          tabBarStyle: {
+            display: 'none', // Hide the bottom navigation bar
+          },
           tabBarIcon: ({ focused }) => (
               <View style={{
                 width: 55,
