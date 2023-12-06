@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
-import { Feather, EvilIcons, Ionicons   } from "@expo/vector-icons";
+import { Feather, Ionicons   } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import { createStackNavigator } from "@react-navigation/stack";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
@@ -10,8 +10,7 @@ import { Overview } from "../../screens/OverviewScreen";
 import { Map } from "../../screens/map/Map";
 import { Leaderboard } from "../../screens/Leaderboard";
 import { ProfileScreen } from "../../screens/ProfileScreen";
-import { Add }     from "../../screens/Add";
-import {CameraScreen} from "../../screens/camera/CameraScreen";
+import { CameraScreen } from "../../screens/camera/CameraScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,8 +27,6 @@ const tabBarIcon =(iconName) =>({ size, color }) =><Ionicons   name={iconName} s
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
   const { onLogout } = useContext(AuthenticationContext);
-
-
 
   return {
     headerShown: true,

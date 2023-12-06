@@ -1,23 +1,32 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "../../../firebaseConfig";
 import { loginRequest, registerUser } from "./authentication.service";
+import { CameraContext } from "../Camera/camera.context";
+
 
 export const AuthenticationContext = createContext();
+
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  const cameraContext = useContext(CameraContext);
+
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      }
-      setIsLoading(false);
-    });
+    const fetchData = async () => {
+      onAuthStateChanged(auth, (authUser) => {
+        if (authUser) {
+          setUser(authUser);
+        }
+        setIsLoading(false);
+      });
+    };
+
+    fetchData();
   }, []);
 
   const onLogin = (email, password) => {
@@ -53,10 +62,12 @@ export const AuthenticationContextProvider = ({ children }) => {
 
   const onLogout = () => {
     setUser(null);
+    cameraContext.resetPhotoList();    
     auth.signOut();
   };
 
   return (
+  
     <AuthenticationContext.Provider
       value={{
         isAuthenticated: !!user,
@@ -70,5 +81,6 @@ export const AuthenticationContextProvider = ({ children }) => {
     >
       {children}
     </AuthenticationContext.Provider>
+   
   );
 };

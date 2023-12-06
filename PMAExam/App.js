@@ -7,18 +7,14 @@ import { Navigation } from "./src/infrastructure/navigation";
 import { CameraContextProvider } from "./src/services/Camera/camera.context";
 
 export default function App() {
-
-  //Hellooo
-
-
-  //Heeej fra Anna
   return (
-    <>
+    <><CameraContextProvider>
         <AuthenticationContextProvider>
-          <CameraContextProvider>
+          
             <Navigation />
-          </CameraContextProvider>
+          
         </AuthenticationContextProvider>
+        </CameraContextProvider>
       <StatusBar style="auto" />
     </>
   );

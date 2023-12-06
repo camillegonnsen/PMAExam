@@ -5,7 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 export const PhotoView = styled.Image`
   flex: 1;
   align-items: center;
-  background: "white";
 `;
 
 export const ReturnButton = styled.TouchableOpacity`

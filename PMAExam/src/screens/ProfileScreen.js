@@ -1,10 +1,8 @@
 import {React, useState} from "react";
-import { StyleSheet, View, Image, Pressable, Modal, FlatList } from "react-native";
+import { StyleSheet, View, Image, ScrollView } from "react-native";
 import { Text } from "react-native-paper";
 import Divider from '../components/divider.component';
-import VisitedAtrranction from '../components/visitedAttraction.component';
-import { BlurView } from 'expo-blur';
-import AttractionDetail from "../components/attractionDetail.component";
+import PhotoList from "../components/photolist.component";
 
 export const ProfileScreen = () => {
 
@@ -27,30 +25,8 @@ export const ProfileScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {selectedPointOfInterest && (
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={true}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            closeModal();
-          }}>
-          <BlurView intensity={4} style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <AttractionDetail
-                name={selectedPointOfInterest.name}
-                score={selectedPointOfInterest.score}
-                address={selectedPointOfInterest.address}
-                image1={selectedPointOfInterest.image1}
-                image2={selectedPointOfInterest.image2}
-                goBack={closeModal}
-              />
-            </View>
-          </BlurView>
-        </Modal>
-      )}
+    
+    <ScrollView style={styles.container}>
 
       <View style={styles.header}>
         <Image
@@ -67,16 +43,10 @@ export const ProfileScreen = () => {
   
       <Divider thickness={3}/>
   
-      <Text style={styles.visitedAttractionsText}>Visited Attractions</Text>
-      <FlatList
-            data={attractionList}
-            renderItem = {({item}) => (
-              <VisitedAtrranction name={item.name} image1={item.image1} image2={item.image2} seeDetails={() => seeDetails(item)}/>
-            )}
-            keyExtractor={item => item.id}
-            contentContainerStyle={styles.flatListContent}
-        />
-    </View>
+      <Text style={styles.visitedAttractionsText}>Photos from your visited attractions!</Text>
+      <PhotoList />
+   
+    </ScrollView>
   );
 };
 
@@ -114,7 +84,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     marginTop: 30,
-    fontSize: 17,
+    fontSize: 20,
     color: "#000000", 
   },
 

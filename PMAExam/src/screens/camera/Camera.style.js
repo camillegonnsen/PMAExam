@@ -44,5 +44,5 @@ export const ButtonIcon = styled(Ionicons).attrs({
 })``;
 
 export const SnackbarText = styled.Text`
-  color: black;
+  color: white;
 `;
