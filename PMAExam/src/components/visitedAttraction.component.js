@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, Text, StyleSheet, Image} from "react-native";
+import GoToButton from "./button.component";
 
 const visitedAttraction = ({ name, image1, image2, seeDetails}) => {
 
@@ -11,9 +12,9 @@ const visitedAttraction = ({ name, image1, image2, seeDetails}) => {
           <Image source={{ uri: image1 }} style={styles.smallImage} />
           <Image source={{ uri: image2 }} style={styles.smallImage} />
         </View>
-        <Pressable style={styles.button} onPress={() => seeDetails()}>
-            <Text style={styles.details}>See details</Text>
-        </Pressable>
+        <View style={styles.margin} >
+        <GoToButton text={"See details"} goTo={() => seeDetails()} buttonWidth={206} buttonHeight={41}/>
+        </View>
       </View>
     </View>
   );
@@ -43,21 +44,10 @@ const styles = StyleSheet.create({
     height: 217,
     margin: 5,
   },
-  button:{
-    width: 206,
-    height: 41,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    backgroundColor: "#688A6F",
-    marginBottom: 25
-  },
 
-  details:{
-    color:"#F2F2F2",
-    fontSize: 17,
-    fontWeight: '600'
-  }
+  margin:{
+    marginBottom: 30
+  },
   
 });
 

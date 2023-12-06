@@ -24,7 +24,9 @@ export const Overview = ({navigation}) => {
         Explore a curated selection of environmentally-conscious travel options and eco-friendly activities.
         Make informed choices that minimize your carbon footprint while having memorable, sustainable adventures around the world.
       </Text>
+      <View style={styles.container2}>
       <GoToButton text={"Find attractions"} goTo={() => goTo()} buttonWidth={250} buttonHeight={50}/>
+      </View>
     </View>
     
   );
@@ -37,6 +39,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#ebe2d9",
     alignItems: "center",
     justifyContent: 'center',
+    
+  },
+
+  container2:{
+    marginBottom: 50
   },
 
   header:{

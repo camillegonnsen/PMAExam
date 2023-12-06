@@ -26,9 +26,7 @@ const AttractionDetail = ({ name, score, address, image1, image2, goBack }) => {
           <Image source={{ uri: image1 }} style={styles.smallImage} />
           <Image source={{ uri: image2 }} style={styles.smallImage} />
         </View>
-        <Pressable style={styles.button} onPress={goBack}>
-          <Text style={styles.back}>Go back</Text>
-        </Pressable>
+        <GoToButton text={"Go back"} goTo={() => goBack()} buttonWidth={206} buttonHeight={41}/>
       </View>
     </View>
   );
@@ -71,7 +69,6 @@ const styles = StyleSheet.create({
     
   },
 
-
   center:{
     alignItems: 'center',
   },
@@ -86,22 +83,7 @@ const styles = StyleSheet.create({
     width: 162,
     height: 217,
     margin: 5,
-  },
-  button:{
-    width: 206,
-    height: 41,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    backgroundColor: "#688A6F"
-  },
-
-  back:{
-    color:"#F2F2F2",
-    fontSize: 17,
-    fontWeight: '600'
-  }
-  
+  }, 
 });
 
 export default AttractionDetail;
