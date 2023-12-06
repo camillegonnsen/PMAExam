@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, FlatList, Image, StyleSheet, Text } from 'react-native';
-import { CameraContext } from '../services/Camera/camera.context';
+import { CameraContext } from '../services/camera/camera.context';
 
 const PhotoList = () => {
   const { photoList } = useContext(CameraContext);

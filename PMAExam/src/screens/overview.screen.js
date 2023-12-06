@@ -1,9 +1,5 @@
 import {React} from "react";
-import {
-  StyleSheet,
-  View,
-  Image
-} from "react-native";
+import {StyleSheet, View, Image} from "react-native";
 import { Text } from "react-native-paper";
 import GoToButton from "../components/button.component";
 

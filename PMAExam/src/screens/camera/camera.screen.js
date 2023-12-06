@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import { Platform } from "react-native";
 import { Snackbar } from "react-native-paper";
 import { useIsFocused } from "@react-navigation/native";
-import { Camera } from "expo-camera";
 
-import { CameraContext } from "../../services/Camera/camera.context";
+
+import { CameraContext } from "../../services/camera/camera.context";
 
 
 import {
@@ -14,7 +14,7 @@ import {
   SmallButton,
   ButtonIcon,
   SnackbarText,
-} from "../camera/Camera.style";
+} from "./Camera.style";
 
 export const CameraScreen = ({ navigation }) => {
   const isAndroid = Platform.OS === "android";

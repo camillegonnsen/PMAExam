@@ -35,17 +35,14 @@ export const ProfileScreen = () => {
         />
         <View style={styles.outlinedHeader}>
           <Text style={styles.descriptionText}>
-          Hello! My name is Hans Christian, I like to note down every time i rub one out! Also I have a thing for sea-creatures.
+          Hello! My name is Hans Christian. I have a thing for sea-creatures and love to explore the beautiful city of Copenhagen
           </Text> 
           <Text style={styles.ecoLevelText}>Eco-Level: Eco Overlord</Text>
         </View>
       </View>
-  
       <Divider thickness={3}/>
-  
       <Text style={styles.visitedAttractionsText}>Photos from your visited attractions!</Text>
       <PhotoList />
-   
     </ScrollView>
   );
 };

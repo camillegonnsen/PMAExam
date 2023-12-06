@@ -1,32 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {
-  PaperProvider,
-} from "react-native-paper";
-
-import {
-  StyleSheet,
-  View,
-  Image,
-  Modal,
-  Portal,
-  Alert,
-  Text,
-  Pressable
-} from "react-native";
-
+import {PaperProvider} from "react-native-paper";
+import {StyleSheet, View, Image, Modal, Alert} from "react-native";
 import { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { BlurView } from 'expo-blur';
 
-import {
-  Maps,
-  LayersButton,
-  LocationButton,
-} from "./maps.style";
+import {Maps, LayersButton, LocationButton} from "./maps.style";
 
 import AttractionDetail from "../../components/attractionDetail.component";
 
-// Defining our own "type" called `pointOfInterest`.
 class pointOfInterest {
   constructor(coordinates, image, name, score, address, image1, image2) {
     this.coordinates = coordinates; // Latitude and longitude.
@@ -215,7 +197,6 @@ export const Map = () => {
             Alert.alert('Modal has been closed.');
             setVisible(!visible);
           }}>
-          
             <BlurView intensity={4} style={styles.centeredView}>
               <View style={styles.modalView}>
                <AttractionDetail

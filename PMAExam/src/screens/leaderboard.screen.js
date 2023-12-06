@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, View, Image, Pressable, Alert, FlatList, Text, Modal } from "react-native";
+import { StyleSheet, View, Alert, FlatList, Text, Modal } from "react-native";
 import LeaderboardAtrraction from "../components/leaderboard.component";
 import { BlurView } from 'expo-blur';
 import AttractionDetail from "../components/attractionDetail.component";

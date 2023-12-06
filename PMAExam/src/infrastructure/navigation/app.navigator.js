@@ -6,11 +6,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-import { Overview } from "../../screens/OverviewScreen";
-import { Map } from "../../screens/map/Map";
-import { Leaderboard } from "../../screens/Leaderboard";
-import { ProfileScreen } from "../../screens/ProfileScreen";
-import { CameraScreen } from "../../screens/camera/CameraScreen";
+import { Overview } from "../../screens/overview.screen";
+import { Map } from "../../screens/map/map.screen";
+import { Leaderboard } from "../../screens/leaderboard.screen";
+import { ProfileScreen } from "../../screens/profile.screen";
+import { CameraScreen } from "../../screens/camera/camera.screen";
 
 const Tab = createBottomTabNavigator();
 

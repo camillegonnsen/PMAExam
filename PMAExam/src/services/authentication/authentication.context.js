@@ -3,7 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "../../../firebaseConfig";
 import { loginRequest, registerUser } from "./authentication.service";
-import { CameraContext } from "../Camera/camera.context";
+import { CameraContext } from "../camera/camera.context";
 
 
 export const AuthenticationContext = createContext();

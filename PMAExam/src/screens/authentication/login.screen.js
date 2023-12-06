@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  Image,
-} from "react-native";
+import {StyleSheet, View, Text, TextInput, Pressable, Image,} from "react-native";
 import { useState, useContext } from "react";
 import { TouchableOpacity } from "react-native";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";

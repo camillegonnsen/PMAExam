@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { CameraContext } from "../../services/Camera/camera.context";
-import { PhotoView, ReturnButton, ButtonIcon } from "./photo.style";
 import { StyleSheet} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { CameraContext } from "../../services/camera/camera.context";
+import { PhotoView, ReturnButton} from "./photo.style";
+
 
 export const PhotoScreen = ({ navigation }) => {
   const { uri } = useContext(CameraContext);

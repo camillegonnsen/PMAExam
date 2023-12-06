@@ -1,12 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TextInput,
-  Pressable,
-  TouchableOpacity,
-} from "react-native";
+import {StyleSheet, View, Text, Image, TextInput, Pressable, TouchableOpacity,} from "react-native";
 import { useState, useContext } from "react";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
@@ -15,10 +7,6 @@ export const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, isLoading, error } = useContext(AuthenticationContext);
-
-  function handleNavigation(){
-    navigation.navigate('LoginScreen')
-  }
 
   return (
     <View style={styles.container}>
