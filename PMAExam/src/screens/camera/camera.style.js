@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { Camera } from "expo-camera"
-import { Ionicons } from "@expo/vector-icons";
+// import { Ionicons } from "@expo/vector-icons";
 
 export const CameraViewS = styled(Camera)`
     flex: 1;
@@ -33,10 +33,10 @@ export const SmallButton = styled.TouchableOpacity`
     border-color: lightblue;
 `;
 
-export const ButtonIcon = styled(Ionicons).attrs({
+/* export const ButtonIcon = styled(Ionicons).attrs({
     size: 32,
     color: blue,
-})``;
+})``; */
 
 export const SnackbarText = styled.Text`
     color: red;

@@ -8,9 +8,9 @@ import { cameraPermission, takePictureAndSave } from "./camera.service";
 export const CameraContext = createContext();
 
 export const CameraContextProvider = ({ children }) => {
-    const [hasPermission, setPermission] = usesState(false);
+    const [hasPermission, setPermission] = useState(false);
     const [camera, setCamera] = useState(null);
-    const [cameraSwitch, setCameraSwitch] = useState(CameraType.front);
+    const [cameraview, setcameraview] = useState(CameraType.front || defaultValue);
     const [uri, setUri] = useState(null);
 
     /* useEffect(<function>, <dependency>) */
@@ -24,8 +24,8 @@ export const CameraContextProvider = ({ children }) => {
     /* The user can decide if they want to use front or back camera */
     const switchCamera = () => {
         const newSwitch =
-            cameraSwitch === CameraType.back ? CameraType.front : CameraType.back;
-        setCameraSwitch(newSwitch);
+            cameraview === CameraType.back ? CameraType.front : CameraType.back;
+        setcameraview(newSwitch);
     };
 
     const takePicture = async () => {
@@ -36,9 +36,8 @@ export const CameraContextProvider = ({ children }) => {
     };
 
     return (
-        <CameraContext.Provider value={{ cameraSwitch, uri, setCamera, switchCamera, takePicture }} >    
+        <CameraContext.Provider value={{ cameraview, uri, setCamera, switchCamera, takePicture }} >    
             {children}
         </CameraContext.Provider>
     )
 }
-

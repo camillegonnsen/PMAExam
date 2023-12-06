@@ -12,7 +12,7 @@ import { Map } from "../../screens/map/Map";
 import { Screen3 } from "../../screens/Screen3";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
-import { CameraView } from "../../screens/camera_screens/CameraView";
+import { CameraView } from "../../screens/camera/camera.screen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -97,7 +97,7 @@ export const AppNavigator = () => (
 
 export const ButtonNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="Add" component={Add} />
+    {/* <Stack.Screen name="Add" component={Add} /> */}
     <Stack.Screen name="camera" component={CameraView} />
   </Stack.Navigator>
 );
