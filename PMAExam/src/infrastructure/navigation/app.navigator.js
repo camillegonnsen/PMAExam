@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { CameraContextProvider } from "../../services/camera/camera.context.js";
 
 import { Screen1 } from "../../screens/Screen1";
 import { Map } from "../../screens/map/Map";
@@ -89,7 +90,7 @@ export const AppNavigator = () => (
                 <Feather name="plus" size={35} color="white"/>
               </View>
           )
-        }}></Tab.Screen>
+        }}></Tab.Screen> 
     <Tab.Screen name="Leaderboard" component={Screen3}/>
     <Tab.Screen name="Profile" component={ProfileScreen} />
   </Tab.Navigator>
@@ -97,7 +98,11 @@ export const AppNavigator = () => (
 
 export const ButtonNavigator = () => (
   <Stack.Navigator>
+    <Stack.Screen name = {"CameraView"} options={{ headerShown: false }} component={() => (
+      <CameraContextProvider>
+        <CameraView />
+      </CameraContextProvider>
+    )}/>
     {/* <Stack.Screen name="Add" component={Add} /> */}
-    <Stack.Screen name="camera" component={CameraView} />
   </Stack.Navigator>
 );

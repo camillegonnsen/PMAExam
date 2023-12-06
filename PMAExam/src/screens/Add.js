@@ -8,12 +8,11 @@ import { CameraContextProvider } from "../services/camera/camera.context.js";
 
 export const Add = () => {
   return (
-    <><Text>Add visited attraction</Text>
     
-    <CameraContextProvider>
+    <>
+      <Text>Add visited attraction</Text>
       <AppNavigator/>
-    </CameraContextProvider>  
-    <StatusBar style="auto" />
+      <StatusBar style="auto" />
     </>
   );
 };

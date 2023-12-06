@@ -26,7 +26,8 @@ export const CameraView = ({ navigation }) => {
     return (
         <>
             {isFocused && (
-                <CameraViewS ref={(ref) => setCamera(ref)}
+                <CameraViewS 
+                    ref={(ref) => setCamera(ref)}
                     type={cameraview}
                     useCcamera2api={isAndroid}
                     ratio="2:1"
@@ -56,5 +57,4 @@ export const CameraView = ({ navigation }) => {
             )}
         </>
     );
-
-}
+};

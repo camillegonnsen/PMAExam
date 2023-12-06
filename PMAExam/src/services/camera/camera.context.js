@@ -10,7 +10,7 @@ export const CameraContext = createContext();
 export const CameraContextProvider = ({ children }) => {
     const [hasPermission, setPermission] = useState(false);
     const [camera, setCamera] = useState(null);
-    const [cameraview, setcameraview] = useState(CameraType.front || defaultValue);
+    const [cameraview, setcameraview] = useState(CameraType.front);
     const [uri, setUri] = useState(null);
 
     /* useEffect(<function>, <dependency>) */
