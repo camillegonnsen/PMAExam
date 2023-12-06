@@ -60,14 +60,12 @@ export const Leaderboard = () => {
       <FlatList
             data={attractionList}
             renderItem = {({item}) => (
-              <Pressable onPress={() => seeDetails(item)}>
               <LeaderboardAtrraction
                 id={item.id}
                 name={item.name}
                 score={item.score}
-                seeDetails={seeDetails}
+                seeDetails={() => seeDetails(item)}
               />
-            </Pressable>
             )}
             keyExtractor={item => item.id}
             contentContainerStyle={styles.flatListContent}

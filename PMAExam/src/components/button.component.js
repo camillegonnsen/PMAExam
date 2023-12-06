@@ -2,10 +2,10 @@ import React from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
 
 
-const GoToButton = ({text, goTo}) => (
-  <View style={styles.container}>
-    <Pressable style={styles.button} onPress={() => goTo()}><Text style={styles.text}>{text}</Text></Pressable>
-  </View>
+const GoToButton = ({text, goTo, buttonWidth, buttonHeight}) => (
+  
+    <Pressable style={[styles.button, { width: buttonWidth, height: buttonHeight }]} onPress={() => goTo()}><Text style={styles.text}>{text}</Text></Pressable>
+  
 );
 const styles = StyleSheet.create({
     container:{

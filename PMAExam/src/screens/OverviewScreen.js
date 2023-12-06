@@ -16,7 +16,7 @@ export const Overview = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image
-          source={require('../../assets/GreenGetAwayLogo.png')}
+          source={require('../../assets/Logo.png')}
           style={{width: 100, height: 100, margin: 30}}
         />
       <Text style={styles.header}>Green Getaway</Text>
@@ -24,7 +24,7 @@ export const Overview = ({navigation}) => {
         Explore a curated selection of environmentally-conscious travel options and eco-friendly activities.
         Make informed choices that minimize your carbon footprint while having memorable, sustainable adventures around the world.
       </Text>
-      <GoToButton text={"Find attractions"} goTo={() => goTo()}/>
+      <GoToButton text={"Find attractions"} goTo={() => goTo()} buttonWidth={250} buttonHeight={50}/>
     </View>
     
   );
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
   text:{
      margin: 30,
-     fontSize: 15,
+     fontSize: 17,
      textAlign: 'center'
   },
 

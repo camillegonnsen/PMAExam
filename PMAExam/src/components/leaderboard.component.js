@@ -4,14 +4,16 @@ import Divider from "../components/divider.component";
 
 const LeaderboardAtrraction = ({ id, name, score, seeDetails }) => (
   <View style={styles.container}>
+    <Pressable onPress={() => seeDetails()}>
     <View style={styles.row}>
         <View>
             <Text style={styles.name}>{id}. {name}</Text>
-            <Pressable onPress={() => seeDetails}><Text style={styles.details}>See details</Text></Pressable>
+            <Pressable onPress={() => seeDetails()}><Text style={styles.details}>See details</Text></Pressable>
         </View>
         <Text style={styles.score}>{score}%</Text>
     </View>
     <Divider thickness={2} />
+    </Pressable>
   </View>
 );
 const styles = StyleSheet.create({

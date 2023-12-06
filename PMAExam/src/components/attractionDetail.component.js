@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import GoToButton from "./button.component";
 
 const AttractionDetail = ({ name, score, address, image1, image2, goBack }) => {
   let scoreStyle;
@@ -92,14 +93,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    borderWidth: 4,
-    borderColor: "#688A6F"
+    backgroundColor: "#688A6F"
   },
 
   back:{
-    color:"#688A6F",
-    fontSize: 20,
-    fontWeight: '700'
+    color:"#F2F2F2",
+    fontSize: 17,
+    fontWeight: '600'
   }
   
 });

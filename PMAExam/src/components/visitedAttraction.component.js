@@ -49,15 +49,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    borderWidth: 4,
-    borderColor: "#688A6F",
+    backgroundColor: "#688A6F",
     marginBottom: 25
   },
 
   details:{
-    color:"#688A6F",
-    fontSize: 20,
-    fontWeight: '700'
+    color:"#F2F2F2",
+    fontSize: 17,
+    fontWeight: '600'
   }
   
 });
