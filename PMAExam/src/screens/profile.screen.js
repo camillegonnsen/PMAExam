@@ -9,24 +9,11 @@ export const ProfileScreen = () => {
   const [attractionList, setattractionList] = useState([
     {id: "1", name: 'The Little Mermaid', score: 93, address: "Langelinie, 2100 København Ø", image1: "https://usercontent.one/wp/www.rundtidanmark.dk/wp-content/uploads/2021/06/KMO_9949.jpg", image2: "https://a.cdn-hotels.com/gdcs/production103/d1630/806328d2-1333-4996-a51b-39d34be73bee.jpg"},
     {id: "2", name: 'Amager Fællede', score: 98, address: "Artillerivej 73B, 2300 København", image1: "https://naturibyen.com/wp-content/uploads/2017/06/Koebenhavn_S_20120808_TH_0049_web.jpg", image2:"https://media-cdn.tripadvisor.com/media/photo-s/05/bf/34/72/amager-faelled.jpg"},
-  ]);
-
-  const [visible, setVisible] = useState(false);
-  const [selectedPointOfInterest, setSelectedPointOfInterest] = useState(null);
-
-  const seeDetails = (item) => {
-    setSelectedPointOfInterest(item);
-    setVisible(true);
-  };
-
-  const closeModal = () => {
-    setSelectedPointOfInterest(null);
-    setVisible(false);
-  };
+  ]);  
 
   return (
     
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
 
       <View style={styles.header}>
         <Image
@@ -43,7 +30,7 @@ export const ProfileScreen = () => {
       <Divider thickness={3}/>
       <Text style={styles.visitedAttractionsText}>Photos from your visited attractions!</Text>
       <PhotoList />
-    </ScrollView>
+    </View>
   );
 };
 
