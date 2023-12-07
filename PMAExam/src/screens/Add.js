@@ -1,11 +1,233 @@
-import React from "react";
-import { Pressable } from "react-native";
-import { Text } from "react-native-paper";
+import React, { useState } from "react";
 
+import { StyleSheet, Pressable, Platform, View, Text } from "react-native";
+import { TouchableOpacity, GestureHandlerRootView } from "react-native-gesture-handler";
+import DateTimePacker from "@react-native-community/datetimepicker";
+import { TextInput } from "react-native-paper";
+import GoToButton from "../components/button.component";
 
-export const Add = () => {
+export const Add = ({ navigation }) => {
+  const [attractionText, setAttractionText] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [showDatePicker, setDatePicker] = useState(false);
+  const [dateInput, setDateInput] = useState('');
+
+  const handleAttractionText = (text) => {
+    setAttractionText(text);
+  };
+
+  {/* show visibility */}
+  const toggleDatePicker = () => {
+    setDatePicker(!showDatePicker);
+  };
+
+  const onChange = ({ type }, selectedDate) => {
+    if (type == "set") {
+      const currentDate = selectedDate || date;
+      setDate(currentDate);
+
+      if (Platform.OS === "android") {
+        setDateInput(currentDate.toDateString());
+        toggleDatePicker();
+      }
+
+    } else {
+      toggleDatePicker();
+    }
+  };
+
+  const confirmIOSDate= () => {
+    setDateInput(date.toDateString());
+    toggleDatePicker();
+  };
+
+  const showDateSpinner = () => {
+    if (showDatePicker) {
+      return (
+      Platform.OS === "ios" ? (
+        <DateTimePacker
+          style={style.dateSpinner}
+          mode="date"
+          display="spinner"
+          value={date}
+          onChange={onChange}
+          placeholderTextColor="#11182744"
+        />
+      ) : (
+        <DateTimePacker
+          style={style.dateSpinner}
+          mode="date"
+          display="spinner"
+          value={date}
+          onChange={onChange}
+          placeholderTextColor="#11182744"
+        />
+      )
+    );
+  };
+  }
+
+  const handleDatePickerPress = () => {
+    setDatePicker(true);
+  }
+
+  const goTo = () => {
+    navigation.navigate("Camera")
+  }
+
+  
   return (
-    <Text>Add visited attraction</Text>
+    <>
+      <GestureHandlerRootView style={{backgroundColor: "#ebe2d9"}}>
+        
+      <View >
+      {/* Naming attraction */}
+      <Text style={style.Atext}>Attraction</Text>
+      <TextInput style={style.Ainput}
+        placeholder="Name of attraction"
+        onChangeText={handleAttractionText}
+        value={attractionText}
+      />
 
+      {/* Naming date of the visited attraction */}
+      <Text style={style.Dtext}>Date</Text>
+
+      <Pressable onPress={toggleDatePicker} style={style.datePickerContainer}>
+          <View style={{flexDirection: "row", alignItems: "center"}}> 
+            <TextInput
+            style={style.dateInput}
+            value={dateInput}
+            placeholder="Date you visited the attraction"
+            onChangeText={setDateInput}
+            editable={false}
+            onTouchStart={handleDatePickerPress} />
+
+          </View>
+          {showDateSpinner()}
+        </Pressable>
+    
+
+
+      {/* Cancel and Confirm button */}
+      {showDatePicker && Platform.OS === "ios" && (
+        <View style={styleButton.buttonContainer}>
+          
+          {/* Cancel button */}
+          <TouchableOpacity 
+            style={[styleButton.cancelButton, styleButton.pickerButton]} 
+            onPress={toggleDatePicker}>
+            <Text style={styleButton.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+
+          {/* Confirm button */}
+          <TouchableOpacity 
+            style={[styleButton.confirmButton]} 
+            onPress={confirmIOSDate}>
+            <Text style={styleButton.buttonText}>Confirm</Text>
+          </TouchableOpacity>
+        </View>
+
+      )}
+
+      <Text style={style.Dtext}>Add a photo</Text>
+      <View style={styleButton.photoButton}>
+        <GoToButton text={"Take a picture"} goTo={() => goTo()} buttonWidth={250} buttonHeight={50} />
+      </View>
+     
+    </View>
+
+    </GestureHandlerRootView>
+    </>
   );
 };
+
+
+const styleButton = StyleSheet.create({
+  photoButton: {
+    marginBottom: 50,
+    marginLeft: 30,
+    marginTop: -20,
+  },
+  cancelButton: {
+    fontSize: 17, 
+    color: "#688A6F",
+  },
+  pickerButton: {
+    backgroundColor: 'grey',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginLeft: -15,
+    marginBottom: 50,
+  },
+
+  buttonText: {
+    fontSize: 17,
+    color: "#fff",
+  },
+
+  confirmButton: {
+    backgroundColor: '#4CAF50',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginLeft: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  }
+});
+
+
+const style = StyleSheet.create({
+  Atext: {
+    fontSize: 17, 
+    color: "#688A6F",
+    fontWeight: "700", 
+    marginTop: 50, 
+    marginBottom: 50,
+    marginLeft: 30,
+  },
+  Dtext: {
+    fontSize: 17, 
+    color: "#688A6F",
+    fontWeight: "700", 
+    marginTop: 50, 
+    marginBottom: 50,
+    marginLeft: 30,
+  },
+  Ainput: {
+    fontSize: 15,
+    height:50,
+    width:300,
+    marginTop: -40,
+    marginLeft: 30,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "grey",
+  },
+  datePickerContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+  },
+  dateInput: {
+    fontSize: 15,
+    height:50,
+    width:300,
+    marginTop: -40,
+    marginLeft: 30,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "grey",
+    placeholderTextColor: "#11182744"
+  },
+  
+  dateSpinner: {
+    height: 120,
+    marginTop: -10,
+  },
+
+  
+});
