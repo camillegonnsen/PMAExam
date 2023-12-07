@@ -29,5 +29,6 @@ export const snapAndSavePhoto = async (camera) => {
         await MediaLibrary.addAssetsToAlbumAsync(asset, album);
     }
 
-    return await MediaLibrary.getAssetInfoAsync(asset.id);
+    return {uri: asset.uri};
+    // await MediaLibrary.getAssetInfoAsync(asset.id);
 };

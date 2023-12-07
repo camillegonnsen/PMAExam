@@ -14,7 +14,7 @@ export const CameraScreen = ({ navigation }) => {
 
     const [visible, setVisible] = useState(false);
 
-    const { type, uri, setCamera, toggleCamera, snapAndSave } = useContext(CameraContext);
+    const { type, photoList, setCamera, toggleCamera, snapAndSave, resetPhotoList} = useContext(CameraContext);
 
     const savingPhoto = () => {
         setVisible(true);
@@ -40,11 +40,11 @@ export const CameraScreen = ({ navigation }) => {
                     <ButtonIcon name="camera-reverse-outline" />
                 </SmallButton>
 
-                <BigButton onPress={() => savingPhoto()} />
+                <BigButton onPress={() => savingPhoto() } />
 
                 <SmallButton
-                    disabled={uri ? false : true}
-                    onPress={() => navigation.navigate("Profile")}
+                    disabled={photoList ? false : true}
+                    onPress={() => navigation.navigate("Photo")}
                 >
                     <ButtonIcon name="albums-outline" />
                 </SmallButton>

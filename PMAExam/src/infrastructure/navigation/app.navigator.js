@@ -12,6 +12,7 @@ import { Leaderboard } from "../../screens/Leaderboard";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
 import { CameraScreen } from "../../screens/camera/camera.screen";
+import { PhotoScreen } from "../../screens/photo/photo.screen";
 
 const Tab = createBottomTabNavigator();
 
@@ -71,6 +72,13 @@ export const AppNavigator = () => (
   <Tab.Navigator screenOptions={createScreenOptions}>
     <Tab.Screen name="Overview" component={Overview}/>
     <Tab.Screen name="Map" component={Map} />
+    <Tab.Screen name="Camera" component={CameraScreen} options={{
+       tabBarLabel: () => null, // Hide the label in the bottom nav bar
+       headerShown: false, // Hide the header
+       tabBarStyle: {
+         display: "none", // hide the bottom navigation bar 
+       },
+    }} />
     <Tab.Screen name={"Add"} component={Add} options={{
           tabBarIcon: ({ focused }) => (
               <View style={{
@@ -108,5 +116,6 @@ export const AppNavigator = () => (
         }}></Tab.Screen> */}
     <Tab.Screen name="Leaderboard" component={Leaderboard}/>
     <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Screen name="Photo" component={PhotoScreen} />
   </Tab.Navigator>
 );
