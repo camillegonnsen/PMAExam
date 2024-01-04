@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
-import { StyleSheet, Pressable, Platform, View, Text } from "react-native";
+import { StyleSheet, Pressable, FlatList, ScrollView, Platform, Image, View, Text } from "react-native";
 import { TouchableOpacity, GestureHandlerRootView } from "react-native-gesture-handler";
 import DateTimePacker from "@react-native-community/datetimepicker";
 import { TextInput } from "react-native-paper";
 import GoToButton from "../components/button.component";
+import { CameraContext, CameraContextProvider } from "../services/camera/camera.context";
 
 export const Add = ({ navigation }) => {
   const [attractionText, setAttractionText] = useState('');
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setDatePicker] = useState(false);
   const [dateInput, setDateInput] = useState('');
-
+  
+  const { photoList } = useContext(CameraContext);
+  
   const handleAttractionText = (text) => {
     setAttractionText(text);
   };
@@ -79,7 +82,7 @@ export const Add = ({ navigation }) => {
   return (
     <>
       <GestureHandlerRootView style={{backgroundColor: "#ebe2d9"}}>
-        
+      <ScrollView>
       <View >
       {/* Naming attraction */}
       <Text style={style.Atext}>Attraction</Text>
@@ -130,12 +133,28 @@ export const Add = ({ navigation }) => {
       )}
 
       <Text style={style.Dtext}>Add a photo</Text>
-      <View style={styleButton.photoButton}>
-        <GoToButton text={"Take a picture"} goTo={() => goTo()} buttonWidth={250} buttonHeight={50} />
-      </View>
+      <CameraContextProvider>
+        <View style={styleButton.photoButton}>
+          <GoToButton text={"Take a picture"} goTo={() => goTo()} buttonWidth={250} buttonHeight={50} />
+        </View>
+
+      </CameraContextProvider>
+      
+      {/* Display the taken photo */}
+      <FlatList
+                numColumns={2}
+                data={photoList}
+                renderItem={({ item }) => (
+                    <View style={style.photoContainer}>
+                    {item.uri && <Image source={{ uri: item.uri }} style={style.photo} /> }
+                    </View>
+                )}
+                keyExtractor={(item) => item.uri.toString()}
+                contentContainerStyle={style.photoListStyle}
+            />
      
     </View>
-
+    </ScrollView>
     </GestureHandlerRootView>
     </>
   );
@@ -227,6 +246,22 @@ const style = StyleSheet.create({
   dateSpinner: {
     height: 120,
     marginTop: -10,
+  },
+
+  photoListStyle: {
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+  },
+  photoContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  photo: {
+      height: 250,
+      width: 150,
+      marginBottom: 50,
+        
   },
 
   

@@ -116,6 +116,13 @@ export const AppNavigator = () => (
         }}></Tab.Screen> */}
     <Tab.Screen name="Leaderboard" component={Leaderboard}/>
     <Tab.Screen name="Profile" component={ProfileScreen} />
-    <Tab.Screen name="Photo" component={PhotoScreen} />
+    <Tab.Screen name="Photo" component={PhotoScreen} options={{
+       tabBarLabel: () => null, // Hide the label in the bottom nav bar
+       headerShown: false, // Hide the header
+       tabBarStyle: {
+         display: "none", // hide the bottom navigation bar 
+       },
+    }} />
+
   </Tab.Navigator>
 );

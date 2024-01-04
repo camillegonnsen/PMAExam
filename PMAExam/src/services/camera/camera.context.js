@@ -15,7 +15,7 @@ export const CameraContextProvider = ({ children }) => {
     useEffect(() => {
         (async () => {
             const permission = await hasCameraPermission();
-        setHasPermission(permission);
+            setHasPermission(permission);
         })();
     }, []);
 

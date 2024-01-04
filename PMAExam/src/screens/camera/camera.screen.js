@@ -15,13 +15,15 @@ export const CameraScreen = ({ navigation }) => {
     const [visible, setVisible] = useState(false);
 
     const { type, photoList, setCamera, toggleCamera, snapAndSave, resetPhotoList} = useContext(CameraContext);
+    console.log('current photolist:', photoList);
 
-    const savingPhoto = () => {
+    const savingPhoto = async () => {
         setVisible(true);
-        snapAndSave();
+        await snapAndSave();
 
         setTimeout(() => {
             setVisible(false);
+            navigation.navigate('Add');
         }, 2000);
     };
 

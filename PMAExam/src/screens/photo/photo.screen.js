@@ -18,7 +18,7 @@ export const PhotoScreen = ({ navigation }) => {
 
     return (
         <>
-            <PhotoView source={{ uri: uri, isStatic: true }} />
+            {/* <PhotoView source={{ uri: uri, isStatic: true }} /> */}
 
             <FlatList
                 numColumns={2}
@@ -28,9 +28,10 @@ export const PhotoScreen = ({ navigation }) => {
                     {item.uri && <Image source={{ uri: item.uri }} style={styles.photo} /> }
                     </View>
                 )}
-                keyExtractor={(item) => item.toString()}
+                keyExtractor={(item) => item.uri.toString()}
                 contentContainerStyle={styles.photoListStyle}
-            />
+            /> 
+
             <ReturnButton onPress={() => navigation.navigate("Add")}>
                 <Ionicons style={styles.icon} name="ios-arrow-back" size={24} color="black" />
             </ReturnButton>
