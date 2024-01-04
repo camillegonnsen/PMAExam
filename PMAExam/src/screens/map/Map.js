@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   PaperProvider,
 } from "react-native-paper";
@@ -25,6 +25,7 @@ import {
 } from "./maps.style";
 
 import AttractionDetail from "../../components/attractionDetail.component";
+import { LocationContext } from "../../services/location/location.context";
 
 // Defining our own "type" called `pointOfInterest`.
 class pointOfInterest {
@@ -44,6 +45,8 @@ export const Map = () => {
   const [showsUserLocation, setShowsUserLocation] = useState(false);
   const [visible, setVisible] = React.useState(false);
   const [selectedPointOfInterest, setSelectedPointOfInterest] = useState(null);
+  const {address, location } = useContext(LocationContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   const greenPin = './../../../assets/Green_Pin.png'
   const yellowPin = './../../../assets/Yellow_Pin.png'
@@ -198,10 +201,19 @@ export const Map = () => {
     setVisible(true);
   };
 
+  const handleLocationPress = () => {
+    setIsOpen(true);
+  };
+
   const closeModal = () => {
     setVisible(false);
     setSelectedPointOfInterest(null);
   };
+
+  const closeLocationModal = () => {
+    setIsOpen(false);
+  };
+
 
   return (
     <PaperProvider>
@@ -228,7 +240,6 @@ export const Map = () => {
                 />
               </View>
            </BlurView>
-          
         </Modal>
       )}
 
@@ -267,6 +278,24 @@ export const Map = () => {
           setShowsUserLocation(!showsUserLocation);
         }}
       />
+      <Pressable style={styles.coordinateButton} onPress={() => handleLocationPress()}><Text style={styles.text}>Your Location</Text></Pressable>
+      <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isOpen}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            closeLocationModal();
+          }}>
+          
+            <BlurView intensity={4} style={styles.centeredView}>
+              <View style={styles.modalView}>
+              <Text style={styles.addressText}>Your location:</Text>
+               <Text style={styles.addressText}>{address}</Text>
+               <Pressable style={styles.backButton} onPress={() => closeLocationModal()}><Text style={styles.text}>Go back</Text></Pressable>
+              </View>
+           </BlurView>
+        </Modal>
     </PaperProvider>
   );
 };
@@ -312,6 +341,38 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+
+  coordinateButton:{
+    position: "absolute",
+    width: 150,
+    height: 35,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: "#688A6F",
+    marginTop: 600,
+    left: 120
+  },
+
+  text:{
+    color: "white",
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  addressText: {
+    fontSize: 20
+  },
+
+  backButton:{
+    width: 150,
+    height: 35,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: "#688A6F",
+    marginTop: 10
   },
 
 
