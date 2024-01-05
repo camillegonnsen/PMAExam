@@ -14,15 +14,15 @@ const PhotoList = () => {
   }
   return (
     <FlatList
-      numColumns={2}
-      data={photoList}
-      renderItem={({ item }) => (
-        <View style={styles.photoContainer}>
-          <Image source={{ uri: item }} style={styles.photo} />
-        </View>
-      )}
-      keyExtractor={(item) => item.toString()}
-      contentContainerStyle={styles.photoListStyle}
+        numColumns={2}
+        data={photoList}
+        renderItem={({ item }) => (
+            <View style={styles.photoContainer}>
+                {item.uri && <Image source={{ uri: item.uri }} style={styles.photo} /> }
+            </View>
+        )}
+        keyExtractor={(item) => item.uri.toString()}
+        contentContainerStyle={styles.photoListStyle}
     />
   );
 };

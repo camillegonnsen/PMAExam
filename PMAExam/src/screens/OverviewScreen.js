@@ -5,7 +5,7 @@ import {
   Image
 } from "react-native";
 import { Text } from "react-native-paper";
-import GoToButton from "../components/goToButton";
+import GoToButton from "../components/goToButton.component";
 
 export const Overview = ({navigation}) => {
   return (

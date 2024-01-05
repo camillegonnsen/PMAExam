@@ -1,20 +1,12 @@
-import {React, useState, useContext} from "react";
-import { StyleSheet, View, Image, Pressable, Modal, ScrollView, FlatList } from "react-native";
+import {React} from "react";
+import { StyleSheet, View, Image} from "react-native";
 import { Text } from "react-native-paper";
 import Divider from '../components/divider.component';
-import VisitedAtrranction from '../components/visitedAttraction.component';
-import { BlurView } from 'expo-blur';
-import AttractionDetail from "../components/attractionDetail.component";
-import { CameraContext} from "../services/camera/camera.context";
 import { SharedState } from "../infrastructure/navigation/SharedStateProvider";
+import PhotoList from "../components/photolist.component";
 
 export const ProfileScreen = () => {
-
-  const { photoList } = useContext(CameraContext);
   const { attractionText, date } = SharedState();
-
-  const [visible, setVisible] = useState(false);
-  const [selectedPointOfInterest, setSelectedPointOfInterest] = useState(null);
 
   return (
     <View style={styles.container}>
@@ -41,17 +33,7 @@ export const ProfileScreen = () => {
             <Text>Date you visited: {date.toDateString()}</Text>
           </>
         )}
-        <FlatList
-              numColumns={2}
-              data={photoList}
-              renderItem={({ item }) => (
-                  <View style={styles.photoContainer}>
-                      {item.uri && <Image source={{ uri: item.uri }} style={styles.photo} /> }
-                  </View>
-              )}
-              keyExtractor={(item) => item.uri.toString()}
-              contentContainerStyle={styles.photoListStyle}
-        />
+        <PhotoList/>
 
     </View>
 

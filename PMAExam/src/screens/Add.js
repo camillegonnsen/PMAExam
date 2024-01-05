@@ -4,7 +4,7 @@ import { StyleSheet, Pressable, FlatList, ScrollView, Platform, Image, View, Tex
 import { TouchableOpacity, GestureHandlerRootView } from "react-native-gesture-handler";
 import DateTimePacker from "@react-native-community/datetimepicker";
 import { TextInput } from "react-native-paper";
-import GoToButton from "../components/button.component";
+import GoToButton from "../components/goToButton.component";
 import { CameraContext, CameraContextProvider } from "../services/camera/camera.context";
 import { SharedState } from "../infrastructure/navigation/SharedStateProvider";
 
@@ -142,16 +142,16 @@ export const Add = ({ navigation }) => {
       
       {/* Display the taken photo */}
       <FlatList
-                numColumns={2}
-                data={photoList}
-                renderItem={({ item }) => (
-                    <View style={style.photoContainer}>
-                    {item.uri && <Image source={{ uri: item.uri }} style={style.photo} /> }
-                    </View>
-                )}
-                keyExtractor={(item) => item.uri.toString()}
-                contentContainerStyle={style.photoListStyle}
-            />
+        numColumns={2}
+        data={[photoList[photoList.length - 1]]} // Use an array with only the last item
+        renderItem={({ item }) => (
+        <View style={style.photoContainer}>
+          {item.uri && <Image source={{ uri: item.uri }} style={style.photo} />}
+        </View>
+      )}
+        keyExtractor={(item) => item.uri.toString()}
+        contentContainerStyle={style.photoListStyle}
+    />
      
     </View>
     </ScrollView>
