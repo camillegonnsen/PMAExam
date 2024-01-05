@@ -1,56 +1,23 @@
-import {React, useState} from "react";
-import { StyleSheet, View, Image, Pressable, Modal, FlatList } from "react-native";
+import {React, useState, useContext} from "react";
+import { StyleSheet, View, Image, Pressable, Modal, ScrollView, FlatList } from "react-native";
 import { Text } from "react-native-paper";
 import Divider from '../components/divider.component';
 import VisitedAtrranction from '../components/visitedAttraction.component';
 import { BlurView } from 'expo-blur';
 import AttractionDetail from "../components/attractionDetail.component";
+import { CameraContext} from "../services/camera/camera.context";
+import { SharedState } from "../infrastructure/navigation/SharedStateProvider";
 
 export const ProfileScreen = () => {
 
-  const [attractionList, setattractionList] = useState([
-    {id: "1", name: 'The Little Mermaid', score: 93, address: "Langelinie, 2100 København Ø", image1: "https://usercontent.one/wp/www.rundtidanmark.dk/wp-content/uploads/2021/06/KMO_9949.jpg", image2: "https://a.cdn-hotels.com/gdcs/production103/d1630/806328d2-1333-4996-a51b-39d34be73bee.jpg"},
-    {id: "2", name: 'Amager Fællede', score: 98, address: "Artillerivej 73B, 2300 København", image1: "https://naturibyen.com/wp-content/uploads/2017/06/Koebenhavn_S_20120808_TH_0049_web.jpg", image2:"https://media-cdn.tripadvisor.com/media/photo-s/05/bf/34/72/amager-faelled.jpg"},
-  ]);
+  const { photoList } = useContext(CameraContext);
+  const { attractionText, date } = SharedState();
 
   const [visible, setVisible] = useState(false);
   const [selectedPointOfInterest, setSelectedPointOfInterest] = useState(null);
 
-  const seeDetails = (item) => {
-    setSelectedPointOfInterest(item);
-    setVisible(true);
-  };
-
-  const closeModal = () => {
-    setSelectedPointOfInterest(null);
-    setVisible(false);
-  };
-
   return (
     <View style={styles.container}>
-      {selectedPointOfInterest && (
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={true}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            closeModal();
-          }}>
-          <BlurView intensity={4} style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <AttractionDetail
-                name={selectedPointOfInterest.name}
-                score={selectedPointOfInterest.score}
-                address={selectedPointOfInterest.address}
-                image1={selectedPointOfInterest.image1}
-                image2={selectedPointOfInterest.image2}
-                goBack={closeModal}
-              />
-            </View>
-          </BlurView>
-        </Modal>
-      )}
 
       <View style={styles.header}>
         <Image
@@ -67,16 +34,27 @@ export const ProfileScreen = () => {
   
       <Divider thickness={3}/>
   
-      <Text style={styles.visitedAttractionsText}>Visited Attractions</Text>
-      <FlatList
-            data={attractionList}
-            renderItem = {({item}) => (
-              <VisitedAtrranction name={item.name} image1={item.image1} image2={item.image2} seeDetails={() => seeDetails(item)}/>
-            )}
-            keyExtractor={item => item.id}
-            contentContainerStyle={styles.flatListContent}
+      <Text style={styles.visitedAttractionsText}> Taked Attractions Photos </Text>
+        {attractionText && date && (
+          <>
+            <Text>Attraction: {attractionText}</Text>
+            <Text>Date you visited: {date.toDateString()}</Text>
+          </>
+        )}
+        <FlatList
+              numColumns={2}
+              data={photoList}
+              renderItem={({ item }) => (
+                  <View style={styles.photoContainer}>
+                      {item.uri && <Image source={{ uri: item.uri }} style={styles.photo} /> }
+                  </View>
+              )}
+              keyExtractor={(item) => item.uri.toString()}
+              contentContainerStyle={styles.photoListStyle}
         />
+
     </View>
+
   );
 };
 
@@ -138,5 +116,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  photoListStyle: {
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+  },
+  photoContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  photo: {
+      height: 250,
+      width: 150,
+      marginBottom: 50,
+        
   },
 });

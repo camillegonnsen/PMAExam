@@ -6,17 +6,18 @@ import DateTimePacker from "@react-native-community/datetimepicker";
 import { TextInput } from "react-native-paper";
 import GoToButton from "../components/button.component";
 import { CameraContext, CameraContextProvider } from "../services/camera/camera.context";
+import { SharedState } from "../infrastructure/navigation/SharedStateProvider";
 
 export const Add = ({ navigation }) => {
-  const [attractionText, setAttractionText] = useState('');
-  const [date, setDate] = useState(new Date());
+  const { attractionText, setAttractionTextAndDate, date} = SharedState();
+  // const [date, setDate] = useState(new Date());
   const [showDatePicker, setDatePicker] = useState(false);
   const [dateInput, setDateInput] = useState('');
   
   const { photoList } = useContext(CameraContext);
   
   const handleAttractionText = (text) => {
-    setAttractionText(text);
+    setAttractionTextAndDate(text, date);
   };
 
   {/* show visibility */}
@@ -77,13 +78,12 @@ export const Add = ({ navigation }) => {
   const goTo = () => {
     navigation.navigate("Camera")
   }
-
   
   return (
     <>
-      <GestureHandlerRootView style={{backgroundColor: "#ebe2d9"}}>
+      <GestureHandlerRootView style={{backgroundColor: "#ebe2d9", flex: 1}}>
       <ScrollView>
-      <View >
+      <View>
       {/* Naming attraction */}
       <Text style={style.Atext}>Attraction</Text>
       <TextInput style={style.Ainput}
@@ -263,6 +263,4 @@ const style = StyleSheet.create({
       marginBottom: 50,
         
   },
-
-  
 });
