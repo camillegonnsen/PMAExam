@@ -11,6 +11,8 @@ import { Map } from "../../screens/map/Map";
 import { Leaderboard } from "../../screens/Leaderboard";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
+import { CameraScreen } from "../../screens/camera/camera.screen";
+import { PhotoScreen } from "../../screens/photo/photo.screen";
 
 const Tab = createBottomTabNavigator();
 
@@ -70,9 +72,14 @@ export const AppNavigator = () => (
   <Tab.Navigator screenOptions={createScreenOptions}>
     <Tab.Screen name="Overview" component={Overview}/>
     <Tab.Screen name="Map" component={Map} />
-    <Tab.Screen name={"Add"} component={Add} Label={"Add"}options={{
-          tabBarLabel: () => null, // Hide the label in the bottom nav bar
-          headerTitle: "Add visited attraction", // Set the label for the header
+    <Tab.Screen name="Camera" component={CameraScreen} options={{
+       tabBarLabel: () => null, // Hide the label in the bottom nav bar
+       headerShown: false, // Hide the header
+       tabBarStyle: {
+         display: "none", // hide the bottom navigation bar 
+       },
+    }} />
+    <Tab.Screen name={"Add"} component={Add} options={{
           tabBarIcon: ({ focused }) => (
               <View style={{
                 width: 55,
@@ -87,7 +94,35 @@ export const AppNavigator = () => (
               </View>
           )
         }}></Tab.Screen>
+    {/* <Tab.Screen name={"Add"} component={CameraScreen} options={{
+          tabBarLabel: () => null, // Hide the label in the bottom nav bar
+          headerShown: false, // Hide the header
+          tabBarStyle: {
+            display: "none", // hide the bottom navigation bar 
+          },
+          tabBarIcon: ({ focused }) => (
+              <View style={{
+                width: 55,
+                height: 55,
+                backgroundColor: '#FFBAD7',
+                borderRadius: 30,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: Platform.OS == "android" ? 50 : 30
+              }}>
+                <Feather name="plus" size={35} color="white"/>
+              </View>
+          )
+        }}></Tab.Screen> */}
     <Tab.Screen name="Leaderboard" component={Leaderboard}/>
     <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Screen name="Photo" component={PhotoScreen} options={{
+       tabBarLabel: () => null, // Hide the label in the bottom nav bar
+       headerShown: false, // Hide the header
+       tabBarStyle: {
+         display: "none", // hide the bottom navigation bar 
+       },
+    }} />
+
   </Tab.Navigator>
 );
