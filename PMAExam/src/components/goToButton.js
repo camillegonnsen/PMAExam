@@ -1,12 +1,14 @@
 import React from "react";
-import { Pressable, View, Text, StyleSheet } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
 
 
 const GoToButton = ({text, goTo, buttonWidth, buttonHeight}) => (
 
-    <Pressable style={[styles.button, { width: buttonWidth, height: buttonHeight }]} onPress={() => goTo()}><Text style={styles.text}>{text}</Text></Pressable>
-  
+    <Pressable style={[styles.button, { width: buttonWidth, height: buttonHeight }]} onPress={() => goTo()}>
+      <Text style={styles.text}>{text}</Text>
+    </Pressable>
 );
+
 const styles = StyleSheet.create({
     button:{
         width: 250,

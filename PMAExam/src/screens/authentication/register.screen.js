@@ -16,10 +16,6 @@ export const RegisterScreen = ({ navigation }) => {
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, isLoading, error } = useContext(AuthenticationContext);
 
-  function handleNavigation(){
-    navigation.navigate('LoginScreen')
-  }
-
   return (
     <View style={styles.container}>
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
-  PaperProvider,
+  PaperProvider, FAB
 } from "react-native-paper";
 
 import {
@@ -8,26 +8,19 @@ import {
   View,
   Image,
   Modal,
-  Portal,
   Alert,
   Text,
   Pressable
 } from "react-native";
 
-import { Marker } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { BlurView } from 'expo-blur';
-
-import {
-  Maps,
-  LayersButton,
-  LocationButton,
-} from "./maps.style";
 
 import AttractionDetail from "../../components/attractionDetail.component";
 import { LocationContext } from "../../services/location/location.context";
 
-// Defining our own "type" called `pointOfInterest`.
+//Defining our own "type" called `pointOfInterest`.
 class pointOfInterest {
   constructor(coordinates, image, name, score, address, image1, image2) {
     this.coordinates = coordinates; // Latitude and longitude.
@@ -205,7 +198,7 @@ export const Map = () => {
     setIsOpen(true);
   };
 
-  const closeModal = () => {
+  const closeAttractionModal = () => {
     setVisible(false);
     setSelectedPointOfInterest(null);
   };
@@ -218,7 +211,7 @@ export const Map = () => {
   return (
     <PaperProvider>
 
-{selectedPointOfInterest && ( // Add a conditional check
+{selectedPointOfInterest && (
         <Modal
           animationType="slide"
           transparent={true}
@@ -236,14 +229,14 @@ export const Map = () => {
                   address={selectedPointOfInterest.address}
                   image1={selectedPointOfInterest.image1}
                  image2={selectedPointOfInterest.image2}
-                  goBack={closeModal}
+                  goBack={closeAttractionModal}
                 />
               </View>
            </BlurView>
         </Modal>
       )}
 
-      <Maps
+      <MapView
         initialRegion={{
           // ITU's coordinates.
           latitude: 55.6596,
@@ -251,6 +244,7 @@ export const Map = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        style={styles.mapView}
         mapType={mapType}
         showsUserLocation={showsUserLocation}
       >
@@ -263,22 +257,26 @@ export const Map = () => {
             <Image source={p.image} style={{ width: 30, height: 40, resizeMode: 'contain' }} />
           </Marker>
         ))}
-      </Maps>
-      <LayersButton
+      </MapView>
+      <FAB
+        style= {styles.layersButton}
         icon="layers"
         size="small"
         onPress={() => {
           setMapType(mapType === "hybrid" ? "standard" : "hybrid");
         }}
       />
-      <LocationButton
+      <FAB
+        style= {styles.locationButton}
         icon="crosshairs-gps"
         size="small"
         onPress={() => {
           setShowsUserLocation(!showsUserLocation);
         }}
       />
-      <Pressable style={styles.coordinateButton} onPress={() => handleLocationPress()}><Text style={styles.text}>Your Location</Text></Pressable>
+      <Pressable style={styles.coordinateButton} onPress={() => handleLocationPress()}>
+        <Text style={styles.text}>Your Location</Text>
+      </Pressable>
       <Modal
           animationType="slide"
           transparent={true}
@@ -287,12 +285,13 @@ export const Map = () => {
             Alert.alert('Modal has been closed.');
             closeLocationModal();
           }}>
-          
             <BlurView intensity={4} style={styles.centeredView}>
               <View style={styles.modalView}>
               <Text style={styles.addressText}>Your location:</Text>
                <Text style={styles.addressText}>{address}</Text>
-               <Pressable style={styles.backButton} onPress={() => closeLocationModal()}><Text style={styles.text}>Go back</Text></Pressable>
+               <Pressable style={styles.backButton} onPress={() => closeLocationModal()}>
+                  <Text style={styles.text}>Go back</Text>
+                </Pressable>
               </View>
            </BlurView>
         </Modal>
@@ -306,6 +305,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 40,
+  },
+
+  mapView:{
+    width: "100%",
+    height: "100%"
   },
   modalView: {
     margin: 20,
@@ -321,26 +325,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
   },
 
   coordinateButton:{
@@ -375,5 +359,19 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
 
+  layersButton: {
+    position: "absolute",
+    backgroundColor: "white",
+    margin: 10,
+    right: 10,
+    marginTop: 10,
+  },
 
+  locationButton: {
+    position: "absolute",
+    backgroundColor: "white",
+    margin: 10,
+    right: 10,
+    marginTop: 60,
+  }
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import GoToButton from "./button.component";
+import GoToButton from "./goToButton";
 
 const AttractionDetail = ({ name, score, address, image1, image2, goBack }) => {
   let scoreStyle;

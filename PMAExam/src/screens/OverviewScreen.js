@@ -5,14 +5,9 @@ import {
   Image
 } from "react-native";
 import { Text } from "react-native-paper";
-import GoToButton from "../components/button.component";
+import GoToButton from "../components/goToButton";
 
 export const Overview = ({navigation}) => {
-
-  const goTo = () => {
-    navigation.navigate('Map')
-  };
-
   return (
     <View style={styles.container}>
       <Image
@@ -25,7 +20,7 @@ export const Overview = ({navigation}) => {
         Make informed choices that minimize your carbon footprint while having memorable, sustainable adventures around the world.
       </Text>
       <View style={styles.container2}>
-      <GoToButton text={"Find attractions"} goTo={() => goTo()} buttonWidth={250} buttonHeight={50}/>
+      <GoToButton text={"Find attractions"} goTo={() => navigation.navigate('Map')} buttonWidth={250} buttonHeight={50}/>
       </View>
     </View>
     
