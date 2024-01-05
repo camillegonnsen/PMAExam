@@ -25,11 +25,11 @@ export const ProfileScreen = () => {
   
       <Divider thickness={3}/>
   
-      <Text style={styles.visitedAttractionsText}> Taked Attractions Photos </Text>
+      <Text style={styles.visitedAttractionsText}> Your taken Photos</Text>
         {attractionText && date && (
           <>
-            <Text>Attraction: {attractionText}</Text>
-            <Text>Date you visited: {date.toDateString()}</Text>
+            <Text style={styles.text}>Attraction: {attractionText}</Text>
+            <Text style={styles.text}>Date you visited: {date.toDateString()}</Text>
           </>
         )}
         <PhotoList/>
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     fontSize: 17,
     color: "#000000", 
+    fontWeight: 600
   },
 
   centeredView: {
@@ -113,4 +114,11 @@ const styles = StyleSheet.create({
       marginBottom: 50,
         
   },
+
+  text:{
+    fontSize: 15,
+    marginLeft: 10,
+    marginBottom: 10
+
+  }
 });

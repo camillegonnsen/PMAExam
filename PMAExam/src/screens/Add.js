@@ -25,18 +25,16 @@ export const Add = ({ navigation }) => {
     setDatePicker(!showDatePicker);
   };
 
-  const onChange = ({ type }, selectedDate) => {
-    if (type == "set") {
+  const onChange = (event, selectedDate) => {
+    if (event.type === "set") {
       const currentDate = selectedDate || date;
-      setDate(currentDate);
+      setDateInput(currentDate.toDateString());
+      setDatePicker(Platform.OS === "ios"); // Close the date picker on iOS
 
-      if (Platform.OS === "android") {
-        setDateInput(currentDate.toDateString());
-        toggleDatePicker();
-      }
-
-    } else {
-      toggleDatePicker();
+      // Assuming setAttractionTextAndDate is a function that updates both text and date
+      setAttractionTextAndDate(attractionText, currentDate);
+    } else if (event.type === "dismissed") {
+      setDatePicker(false); // Close the date picker on Android
     }
   };
 
@@ -162,7 +160,7 @@ export const Add = ({ navigation }) => {
 
 const styleButton = StyleSheet.create({
   photoButton: {
-    marginBottom: 50,
+    marginBottom: 20,
     marginLeft: 30,
     marginTop: -20,
   },
