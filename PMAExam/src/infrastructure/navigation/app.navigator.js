@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
-import { Feather, EvilIcons, Ionicons   } from "@expo/vector-icons";
+import { Feather, Ionicons   } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
@@ -12,9 +13,16 @@ import { Leaderboard } from "../../screens/Leaderboard";
 import { ProfileScreen } from "../../screens/ProfileScreen";
 import { Add }     from "../../screens/Add";
 import { CameraScreen } from "../../screens/camera/camera.screen";
-import { PhotoScreen } from "../../screens/photo/photo.screen";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const AddStack = () => (
+  <Stack.Navigator headerMode="none" >
+    <Stack.Screen name="Add" component={Add}/>
+    <Stack.Screen name="Camera" component={CameraScreen}/>
+  </Stack.Navigator>
+);
 
 const TAB_ICON = {
   Overview: "eye-outline",
@@ -25,12 +33,9 @@ const TAB_ICON = {
 
 const tabBarIcon =(iconName) =>({ size, color }) =><Ionicons   name={iconName} size={size} color={color}/>;
 
-
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
   const { onLogout } = useContext(AuthenticationContext);
-
-
 
   return {
     headerShown: true,
@@ -72,57 +77,22 @@ export const AppNavigator = () => (
   <Tab.Navigator screenOptions={createScreenOptions}>
     <Tab.Screen name="Overview" component={Overview}/>
     <Tab.Screen name="Map" component={Map} />
-    <Tab.Screen name="Camera" component={CameraScreen} options={{
-       tabBarLabel: () => null, // Hide the label in the bottom nav bar
-       headerShown: false, // Hide the header
-       tabBarStyle: {
-         display: "none", // hide the bottom navigation bar 
-       },
+    <Tab.Screen name="Add" component={AddStack} options={{
+      tabBarIcon: ({ focused }) => (
+        <View style={{
+          width: 55,
+          height: 55,
+          backgroundColor: '#FFBAD7',
+          borderRadius: 30,
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: Platform.OS == "android" ? 50 : 30
+        }}>
+          <Feather name="plus" size={35} color="white" />
+        </View>
+      )
     }} />
-    <Tab.Screen name={"Add"} component={Add} options={{
-          tabBarIcon: ({ focused }) => (
-              <View style={{
-                width: 55,
-                height: 55,
-                backgroundColor: '#FFBAD7',
-                borderRadius: 30,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: Platform.OS == "android" ? 50 : 30
-              }}>
-                <Feather name="plus" size={35} color="white"/>
-              </View>
-          )
-        }}></Tab.Screen>
-    {/* <Tab.Screen name={"Add"} component={CameraScreen} options={{
-          tabBarLabel: () => null, // Hide the label in the bottom nav bar
-          headerShown: false, // Hide the header
-          tabBarStyle: {
-            display: "none", // hide the bottom navigation bar 
-          },
-          tabBarIcon: ({ focused }) => (
-              <View style={{
-                width: 55,
-                height: 55,
-                backgroundColor: '#FFBAD7',
-                borderRadius: 30,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: Platform.OS == "android" ? 50 : 30
-              }}>
-                <Feather name="plus" size={35} color="white"/>
-              </View>
-          )
-        }}></Tab.Screen> */}
     <Tab.Screen name="Leaderboard" component={Leaderboard}/>
     <Tab.Screen name="Profile" component={ProfileScreen} />
-    <Tab.Screen name="Photo" component={PhotoScreen} options={{
-       tabBarLabel: () => null, // Hide the label in the bottom nav bar
-       headerShown: false, // Hide the header
-       tabBarStyle: {
-         display: "none", // hide the bottom navigation bar 
-       },
-    }} />
-
   </Tab.Navigator>
 );

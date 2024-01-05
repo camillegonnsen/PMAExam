@@ -22,7 +22,7 @@ export const BigButton = styled.TouchableOpacity`
     border-width: 5px;
     background-color: grey;
     border-color: white;
-    margin-top: 700px;
+    margin-top: 550px;
 `;
 
 export const SmallButton = styled.TouchableOpacity`
@@ -33,13 +33,13 @@ export const SmallButton = styled.TouchableOpacity`
     border-radius: 40px;
     border-width: 3px;
     border-color: black;
-    margin-top: 700px;
+    margin-top: 550px;
     margin-right: 30px;
     margin-left: 30px;
 `;
 
 export const ButtonIcon = styled(Ionicons).attrs({
-    size: 40,
+    size: 30,
     color: "white",
 })``;
 

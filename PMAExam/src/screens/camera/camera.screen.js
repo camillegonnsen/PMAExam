@@ -46,9 +46,9 @@ export const CameraScreen = ({ navigation }) => {
 
                 <SmallButton
                     disabled={photoList ? false : true}
-                    onPress={() => navigation.navigate("Photo")}
+                    onPress={() => navigation.navigate("Add")}
                 >
-                    <ButtonIcon name="albums-outline" />
+                    <ButtonIcon name="chevron-back" />
                 </SmallButton>
             </ButtonsView>
             

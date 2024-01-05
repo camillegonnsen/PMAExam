@@ -143,16 +143,15 @@ export const Add = ({ navigation }) => {
       {/* Display the taken photo */}
       <FlatList
         numColumns={2}
-        data={[photoList[photoList.length - 1]]} // Use an array with only the last item
+        data={[photoList[photoList.length - 1]]}
         renderItem={({ item }) => (
         <View style={style.photoContainer}>
-          {item.uri && <Image source={{ uri: item.uri }} style={style.photo} />}
+          {item && item.uri && <Image source={{ uri: item.uri }} style={style.photo} />}
         </View>
       )}
-        keyExtractor={(item) => item.uri.toString()}
-        contentContainerStyle={style.photoListStyle}
+      keyExtractor={(item) => (item ? item.uri.toString() : null)}
+      contentContainerStyle={style.photoListStyle}
     />
-     
     </View>
     </ScrollView>
     </GestureHandlerRootView>
