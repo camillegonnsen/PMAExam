@@ -7,6 +7,7 @@ import { TextInput } from "react-native-paper";
 import GoToButton from "../components/goToButton.component";
 import { CameraContext, CameraContextProvider } from "../services/camera/camera.context";
 import { SharedState } from "../infrastructure/navigation/SharedStateProvider";
+import PhotoList from "../components/photolist.component";
 
 export const Add = ({ navigation }) => {
   const { attractionText, setAttractionTextAndDate, date} = SharedState();

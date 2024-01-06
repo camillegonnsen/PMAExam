@@ -10,11 +10,6 @@ import { SharedStateProvider } from "./src/infrastructure/navigation/SharedState
 
 
 export default function App() {
-
-  //Hellooo
-
-
-  //Heeej fra Anna
   return (
     <>
       <SharedStateProvider>

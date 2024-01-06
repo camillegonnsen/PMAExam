@@ -1,12 +1,14 @@
-import {React} from "react";
+import {React, useContext} from "react";
 import { StyleSheet, View, Image} from "react-native";
 import { Text } from "react-native-paper";
 import Divider from '../components/divider.component';
 import { SharedState } from "../infrastructure/navigation/SharedStateProvider";
 import PhotoList from "../components/photolist.component";
 
+
 export const ProfileScreen = () => {
   const { attractionText, date } = SharedState();
+
 
   return (
     <View style={styles.container}>

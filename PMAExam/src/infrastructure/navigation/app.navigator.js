@@ -73,7 +73,6 @@ const createScreenOptions = ({ route }) => {
 
 
 export const AppNavigator = () => (
-  
   <Tab.Navigator screenOptions={createScreenOptions}>
     <Tab.Screen name="Overview" component={Overview}/>
     <Tab.Screen name="Map" component={Map} />

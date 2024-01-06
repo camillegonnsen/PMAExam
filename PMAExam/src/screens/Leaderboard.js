@@ -37,7 +37,7 @@ export const Leaderboard = () => {
         <Modal
           animationType="slide"
           transparent={true}
-          visible={true} // Always set to true
+          visible={visible}
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
             closeModal();
@@ -68,7 +68,6 @@ export const Leaderboard = () => {
               />
             )}
             keyExtractor={item => item.id}
-            contentContainerStyle={styles.flatListContent}
         />
     </View>
   );
